@@ -20,6 +20,7 @@
 <meta name="twitter:title" content="Jenni Bruno — Turning Data Into Decisions">
 <meta name="twitter:description" content="I turn messy data and business problems into obvious decisions. Strategist, AI tinkerer, and consultant based in Philadelphia.">
 <meta name="twitter:image" content="https://www.jennibruno.com/og-image.png">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23FF3FA4'/><text x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-weight='900' font-size='14' fill='white' letter-spacing='-1'>jb</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,700&family=Bricolage+Grotesque:wght@400;600;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -406,14 +407,19 @@
     padding: 1rem 0;
     overflow: hidden;
     background: var(--pink);
-    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   }
 
   .marquee-track {
     display: inline-flex;
     gap: 2rem;
-    animation: scroll 20s linear infinite;
+    animation: scroll 25s linear infinite;
     white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
   }
 
   .marquee-item {
@@ -428,11 +434,6 @@
   }
 
   .marquee-star { color: var(--yellow); font-size: 1rem; }
-
-  @keyframes scroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
 
   /* ABOUT */
   .about-section {
@@ -908,7 +909,7 @@
       <div class="hcard hcard-back"></div>
       <div class="hcard hcard-mid"></div>
       <div class="hcard hcard-front">
-        <div class="card-avatar">📊</div>
+        <div class="card-avatar">🙋🏻‍♀️</div>
         <div>
           <div class="card-name">Jenni Bruno</div>
           <div class="card-title">Strategy | Data & Insights | Product</div>
@@ -934,19 +935,32 @@
   </div>
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee-wrap">
-  <div class="marquee-track">
-    <span class="marquee-item"><span class="marquee-star">★</span> Media Strategy</span>
-    <span class="marquee-item"><span class="marquee-star">★</span> Data Storytelling</span>
-    <span class="marquee-item"><span class="marquee-star">★</span> AI</span>
-    <span class="marquee-item"><span class="marquee-star">★</span> Consulting</span>
-    <span class="marquee-item"><span class="marquee-star">★</span> Quilting</span>
-    <span class="marquee-item"><span class="marquee-star">★</span> Media Strategy</span>
-    <span class="marquee-item"><span class="marquee-star">★</span> Data Storytelling</span>
-    <span class="marquee-item"><span class="marquee-star">★</span> AI</span>
-    <span class="marquee-item"><span class="marquee-star">★</span> Consulting</span>
-    <span class="marquee-item"><span class="marquee-star">★</span> Quilting</span>
+  <div class="marquee-wrap">
+  <div style="display:flex; white-space:nowrap;">
+    <div class="marquee-track">
+      <span class="marquee-item"><span class="marquee-star">★</span> Media Strategy</span>
+      <span class="marquee-item"><span class="marquee-star">★</span> Data Storytelling</span>
+      <span class="marquee-item"><span class="marquee-star">★</span> AI</span>
+      <span class="marquee-item"><span class="marquee-star">★</span> Consulting</span>
+      <span class="marquee-item"><span class="marquee-star">★</span> Quilting</span>
+      <span class="marquee-item"><span class="marquee-star">★</span> Media Strategy</span>
+      <span class="marquee-item"><span class="marquee-star">★</span> Data Storytelling</span>
+      <span class="marquee-item"><span class="marquee-star">★</span> AI</span>
+      <span class="marquee-item"><span class="marquee-star">★</span> Consulting</span>
+      <span class="marquee-item"><span class="marquee-star">★</span> Quilting</span>
+    </div>
+    <div class="marquee-track" aria-hidden="true">
+      <span class="marquee-item"><span class="marquee-star">★</span> Media Strategy</span>
+      <span class="marquee-item"><span class="marquee-star">★</span> Data Storytelling</span>
+      <span class="marquee-item"><span class="marquee-star">★</span> AI</span>
+      <span class="marquee-item"><span class="marquee-star">★</span> Consulting</span>
+      <span class="marquee-item"><span class="marquee-star">★</span> Quilting</span>
+      <span class="marquee-item"><span class="marquee-star">★</span> Media Strategy</span>
+      <span class="marquee-item"><span class="marquee-star">★</span> Data Storytelling</span>
+      <span class="marquee-item"><span class="marquee-star">★</span> AI</span>
+      <span class="marquee-item"><span class="marquee-star">★</span> Consulting</span>
+      <span class="marquee-item"><span class="marquee-star">★</span> Quilting</span>
+    </div>
   </div>
 </div>
 
@@ -1052,21 +1066,23 @@
 
   <div class="contact-form-wrap">
     <div class="form-title">Send a note 💌</div>
+    <form action="https://formspree.io/f/xaqkjbrb" method="POST">
     <div class="field">
       <label>Your name</label>
-      <input type="text" placeholder="What should I call you?">
+      <input type="text" name="name" placeholder="What should I call you?">
     </div>
     <div class="field">
-      <label>Email</label>
-      <input type="email" placeholder="your@email.com">
+      <label>Email <span style="color:var(--pink);">*</span></label>
+      <input type="email" name="email" placeholder="your@email.com" required>
     </div>
     <div class="field">
       <label>What's on your mind?</label>
-      <textarea rows="5" placeholder="Tell me about your project, idea, or just say hi..."></textarea>
+      <textarea rows="5" name="message" placeholder="Tell me about your project, idea, or just say hi..."></textarea>
     </div>
-    <button class="pill-btn pill-primary" style="width:100%; justify-content:center; font-size:0.9rem;">
+    <button type="submit" class="pill-btn pill-primary" style="width:100%; justify-content:center; font-size:0.9rem;">
       Send it ✨
     </button>
+    </form>
   </div>
 </section>
 
