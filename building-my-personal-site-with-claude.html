@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Building my personal site using Claude — Jenni Bruno</title>
+<meta name="description" content="I've always wanted a website, but never had a reason to fully commit. Here's how I built mine for free using Claude and GitHub Pages.">
+<meta name="author" content="Jenni Bruno">
+<link rel="canonical" href="https://www.jennibruno.com/blog/building-my-site-with-claude.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.jennibruno.com/blog/building-my-site-with-claude.html">
+<meta property="og:title" content="Building my personal site using Claude — Jenni Bruno">
+<meta property="og:description" content="I've always wanted a website, but never had a reason to fully commit. Here's how I built mine for free using Claude and GitHub Pages.">
+<meta property="og:site_name" content="Jenni Bruno">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Building my personal site using Claude — Jenni Bruno">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23FF3FA4'/><text x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='Georgia,serif' font-weight='900' font-size='14' fill='white' letter-spacing='-1'>jb</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,700&family=Bricolage+Grotesque:wght@400;600;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink: #FF3FA4;
+    --pink-light: #FFB3DA;
+    --pink-pale: #FFF0F8;
+    --lavender: #C9B3FF;
+    --lavender-deep: #9B7FE8;
+    --blue: #3B8BFF;
+    --blue-light: #B8D4FF;
+    --yellow: #FFE566;
+    --yellow-deep: #FFD000;
+    --mint: #B8FFE0;
+    --coral: #FF7A5C;
+    --white: #FFFAF8;
+    --black: #1A1025;
+    --text: #2D1B4E;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--white);
+    color: var(--text);
+    font-family: 'Bricolage Grotesque', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    padding: 1rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255,250,248,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1.5px solid rgba(255,63,164,0.15);
+  }
+
+  .nav-logo {
+    font-family: 'Fraunces', serif;
+    font-weight: 900;
+    font-size: 1.4rem;
+    color: var(--pink);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+
+  .nav-logo span {
+    display: inline-block;
+    width: 8px; height: 8px;
+    background: var(--yellow-deep);
+    border-radius: 50%;
+    margin-left: 4px;
+    vertical-align: middle;
+    animation: blink 2s ease-in-out infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.5); background: var(--pink); }
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 0.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    transition: all 0.2s;
+  }
+
+  .nav-links a:hover { background: var(--pink); color: white; transform: translateY(-2px); }
+  .nav-cta { background: var(--pink) !important; color: white !important; box-shadow: 0 4px 15px rgba(255,63,164,0.35); }
+
+  /* ARTICLE LAYOUT */
+  .article-wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 4rem 2rem 6rem;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* BACK LINK */
+  .back-link {
+    display: block;
+    width: fit-content;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--pink);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 1.5rem;
+    transition: gap 0.2s;
+  }
+
+  .back-link:hover { gap: 0.7rem; }
+
+  /* POST HEADER */
+  .post-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--lavender-deep);
+    margin-bottom: 1rem;
+    background: #F3EEFF;
+    padding: 0.3rem 0.8rem;
+    border-radius: 100px;
+    border: 1.5px solid var(--lavender);
+  }
+
+  .post-headline {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--blue);
+    margin-bottom: 1.5rem;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.78rem;
+    color: #A090B0;
+    font-weight: 600;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1.5px solid rgba(26,16,37,0.07);
+  }
+
+  .meta-dot {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--pink-light);
+  }
+
+  /* BODY CONTENT */
+  .post-body {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.15rem;
+    line-height: 1.85;
+    color: #3D2B5E;
+  }
+
+  .post-body p {
+    margin-bottom: 1.6rem;
+  }
+
+  .post-body a {
+    color: var(--pink);
+    text-decoration: underline;
+    text-decoration-color: var(--pink-light);
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.2s;
+  }
+
+  .post-body a:hover { text-decoration-color: var(--pink); }
+
+  /* PROMPT BLOCK */
+  .prompt-block {
+    background: rgba(59,139,255,0.06);
+    border-radius: 16px;
+    padding: 1.5rem 1.8rem;
+    margin: 2rem 0;
+    position: relative;
+    overflow: hidden;
+    border: 1.5px solid rgba(59,139,255,0.15);
+  }
+
+  .prompt-block::before {
+    content: '✦';
+    position: absolute;
+    top: -10px;
+    right: 1.5rem;
+    font-size: 4rem;
+    color: rgba(59,139,255,0.08);
+    line-height: 1;
+  }
+
+  .prompt-label {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--blue);
+    margin-bottom: 0.6rem;
+  }
+
+  .prompt-text {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--text);
+    font-style: italic;
+  }
+
+  /* IMAGE PLACEHOLDER */
+  .post-image {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 2rem 0;
+    border: 1.5px solid rgba(26,16,37,0.07);
+    box-shadow: 0 8px 30px rgba(26,16,37,0.08);
+  }
+
+  .post-image img {
+    width: 100%;
+    display: block;
+  }
+
+  .image-caption {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 0.78rem;
+    color: #A090B0;
+    text-align: center;
+    margin-top: -1rem;
+    margin-bottom: 2rem;
+    font-style: normal;
+  }
+
+  /* WHAT'S NEXT LIST */
+  .whats-next {
+    background: linear-gradient(135deg, var(--pink-pale), #F3EEFF);
+    border-radius: 20px;
+    padding: 2rem 2rem 2rem 2rem;
+    margin: 2rem 0;
+    border: 1.5px solid var(--pink-light);
+  }
+
+  .whats-next-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 1.2rem;
+  }
+
+  .whats-next ol {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    padding: 0;
+  }
+
+  .whats-next li {
+    display: block;
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: #3D2B5E;
+    padding-left: 2.2rem;
+    position: relative;
+  }
+
+  .list-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--pink);
+    color: white;
+    font-family: 'Fraunces', serif;
+    font-size: 0.8rem;
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    top: 1px;
+  }
+
+  /* POST FOOTER */
+  .post-footer-bar {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1.5px solid rgba(26,16,37,0.07);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .author-block {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .author-avatar {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--pink), var(--lavender-deep));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+  }
+
+  .author-name {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--text);
+  }
+
+  .author-handle {
+    font-size: 0.75rem;
+    color: #A090B0;
+  }
+
+  .back-to-blog {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--pink-pale);
+    color: var(--pink);
+    padding: 0.6rem 1.2rem;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    border: 1.5px solid var(--pink-light);
+    transition: all 0.2s;
+  }
+
+  .back-to-blog:hover { background: var(--pink); color: white; border-color: var(--pink); transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    background: var(--black);
+    color: rgba(255,255,255,0.6);
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .footer-logo {
+    font-family: 'Fraunces', serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--pink);
+    letter-spacing: -0.02em;
+  }
+
+  .footer-middle { text-align: center; font-size: 0.78rem; line-height: 1.8; }
+  .footer-right { text-align: right; font-size: 0.78rem; }
+  .inline-link {
+    color: #3D2B5E;
+    text-decoration: underline;
+    text-decoration-color: rgba(61,43,94,0.3);
+    text-underline-offset: 3px;
+  }
+
+  .inline-link:hover { text-decoration-color: #3D2B5E; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: flex; }
+    .nav-links li { display: none; }
+    .nav-links li:last-child { display: block; }
+    .article-wrap { padding: 2.5rem 1.5rem 5rem; }
+    footer { grid-template-columns: 1fr; text-align: center; }
+    .footer-right { text-align: center; }
+    .post-footer-bar { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">jenni bruno<span></span></a>
+  <ul class="nav-links">
+    <li><a href="/#about">About</a></li>
+    <li><a href="/blog/">Writing</a></li>
+    <li><a href="/#contact" class="nav-cta">Say hello ✨</a></li>
+  </ul>
+</nav>
+
+<!-- ARTICLE -->
+<div class="article-wrap">
+
+  <a href="/blog/" class="back-link">← All posts</a>
+
+  <div class="post-eyebrow">Prompted</div>
+  <h1 class="post-headline">Building my personal site using Claude</h1>
+
+  <div class="post-meta">
+    <span>May 2026</span>
+    <span class="meta-dot"></span>
+    <span>AI & Tools</span>
+  </div>
+
+  <div class="post-body">
+
+    <p>I've always wanted a website, but never had a reason to fully commit, especially if it meant a monthly subscription fee. I've been on a mission to experiment with AI, so I asked Claude:</p>
+
+    <div class="prompt-block">
+      <div class="prompt-label">My prompt</div>
+      <div class="prompt-text">"What's the cheapest way for me to host a website? I would want a contact form that sends to email, and a blog function, and a landing page"</div>
+    </div>
+
+    <p>I was surprised to learn that there is a <b>free</b> way to host my website using Github Pages, with a free form powered by <a href="https://formspree.io" target="_blank">Formspree</a>. I was skeptical that the sites would look too basic, so I asked Claude for examples and was given these two links:</p>
+
+    <ul style="padding-left: 1.4rem; margin-bottom: 1.6rem; display: flex; flex-direction: column; gap: 0.4rem;">
+      <li><a href="https://jekyllrb.com/showcase/" target="_blank">jekyllrb.com/showcase</a></li>
+      <li><a href="https://github.com/collections/github-pages-examples" target="_blank">github.com/collections/github-pages-examples</a></li>
+    </ul>
+
+    <p>Happy with what I saw, I asked Claude to create a personal site using a neo brutalist or maximalist theme. Here's the first version:</p>
+
+  </div>
+
+  <div class="post-image">
+    <img src="/blog/images/claude-site-v1-neo-brutalism-maximalist.png" alt="First version of the site — neo brutalist design with yellow nav, black hero, and bold typography">
+  </div>
+  <p class="image-caption">Version 1 — neo brutalist. Bold, but a little too harsh.</p>
+
+  <div class="post-body">
+
+    <p>This ended up being TOO harsh for me, so I asked Claude for "a more feminine, girly" approach, and mentioned my apartment design style is dopamine decor. The second round was exactly what I wanted, and matches my current site's design!</p>
+
+    <p>Claude already had a good sense of my background and career aspirations, so the site already included some baseline copy, which only required a few tweaks. I requested a few adjustments and fixes to the layout, and then asked Claude for instructions on how to publish.</p>
+
+    <p>Claude gave me step-by-step guides for: how to purchase my domain, how to upload everything into GitHub, and how to point my domain to the GitHub page.</p>
+
+    <p>The site is now live! After years of reluctance, I'm so amazed that I'm able to host the site for free, and that I could build it (and edit it) with just a few quick prompts. It feels very MySpace, where making a few small changes can create a page that lets the world know who you are!</p>
+
+  </div>
+
+  <div class="whats-next">
+    <div class="whats-next-title">What's next</div>
+    <ol>
+      <li><span class="list-num">1</span>Write a few more posts about my AI experiments, consider integrating Jekyll if I'm updating the site more often</li>
+      <li><span class="list-num">2</span>Create a fun AI-animated hero image (inspired by a former coworker <a href="#" target="_blank" class="inline-link">Caleb King</a>)</li>
+      <li><span class="list-num">3</span>Check in on Cloudflare's analytics and decide if I want something more powerful</li>
+      <li><span class="list-num">4</span>I have a sneaking suspicion everyone's Claude-built site looks the same, so I'll be watching to see if I need to freshen up the design</li>
+    </ol>
+  </div>
+
+  <div class="post-footer-bar">
+    <div class="author-block">
+      <div class="author-avatar">🙋🏻‍♀️</div>
+      <div>
+        <div class="author-name">Jenni Bruno</div>
+        <div class="author-handle">May 2026</div>
+      </div>
+    </div>
+    <a href="/blog/" class="back-to-blog">← Back to writing</a>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">jenni bruno.</div>
+  <div class="footer-middle">
+    Philly/NYC<br>
+    <span style="font-size:0.7rem; opacity:0.5;">Product Manager · Strategist · Human</span>
+  </div>
+  <div class="footer-right">
+    Made with Claude and lots of <span class="footer-heart">♥</span><br>
+    <span style="font-size:0.7rem; opacity:0.5;">© 2026</span>
+  </div>
+</footer>
+
+</body>
+</html>
