@@ -411,7 +411,6 @@
 
   .marquee-track {
     display: inline-flex;
-    gap: 2rem;
     animation: scroll 25s linear infinite;
     white-space: nowrap;
     flex-shrink: 0;
@@ -431,6 +430,7 @@
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 0.06em;
+    padding-right: 2.5rem;
   }
 
   .marquee-star { color: var(--yellow); font-size: 1rem; }
@@ -486,8 +486,9 @@
   .about-pill-float:nth-child(2) { top: 10%; right: -20px; animation-delay: 0s; }
   .about-pill-float:nth-child(3) { bottom: 15%; left: -20px; animation-delay: 1s; }
   .about-pill-float:nth-child(4) { top: 50%; right: -30px; animation-delay: 2s; }
-  .about-pill-float.about-pill-4 { top: 30%; left: -20px; animation-delay: 1.5s; }
+  .about-pill-float.about-pill-4 { top: 10%; left: -20px; animation-delay: 1.5s; }
   .about-pill-float.about-pill-5 { bottom: 5%; right: -10px; animation-delay: 0.8s; }
+  .about-pill-float.about-pill-6 { top: 50%; left: -30px; animation-delay: 2.2s; }
 
   .about-text-side {}
 
@@ -882,7 +883,7 @@
 
     <h1 class="hero-headline">
       Data nerd.<br>
-      <span class="line-pink">Product thinker.</span><br>
+      <span class="line-pink" style="white-space:nowrap;">Product thinker.</span><br>
       <span class="line-blue">Strategist.</span><br>
       <span class="line-italic">Storyteller.</span>
     </h1>
@@ -973,6 +974,7 @@
     <div class="about-pill-float">🤖 AI tinkerer</div>
     <div class="about-pill-float about-pill-4">🎀 Girl mom</div>
     <div class="about-pill-float about-pill-5">📖 Print enthusiast</div>
+    <div class="about-pill-float about-pill-6">⚰️ Em dash mourner</div>
   </div>
   <div class="about-text-side">
     <div class="section-eyebrow">About me</div>
