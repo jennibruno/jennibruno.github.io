@@ -316,6 +316,31 @@
     top: 1px;
   }
 
+  /* DISCLAIMER */
+  .disclaimer-block {
+    margin-top: 3rem;
+    padding: 2rem 2.2rem;
+    background: linear-gradient(135deg, rgba(255,229,102,0.15), rgba(255,63,164,0.08));
+    border-radius: 20px;
+    border: 1.5px solid var(--yellow-deep);
+  }
+
+  .disclaimer-heading {
+    font-family: 'Fraunces', serif;
+    font-size: 1.25rem;
+    font-weight: 900;
+    color: var(--coral);
+    margin-bottom: 1.2rem;
+    line-height: 1.3;
+  }
+
+  .disclaimer-asterisk {
+    color: var(--pink);
+    font-size: 1.5rem;
+    vertical-align: middle;
+    margin-right: 0.1rem;
+  }
+
   /* POST FOOTER */
   .post-footer-bar {
     margin-top: 4rem;
@@ -473,7 +498,7 @@
 
     <p>Claude gave me step-by-step guides for: how to purchase my domain, how to upload everything into GitHub, and how to point my domain to the GitHub page.</p>
 
-    <p>The site is now live! After years of reluctance, I'm so amazed that I'm able to host the site for free, and that I could build it (and edit it) with just a few quick prompts. It feels very MySpace, where making a few small changes can create a page that lets the world know who you are!</p>
+    <p>The site is now live! After years of reluctance, I'm so amazed that I'm able to host the site for free, and that I could build it (and edit it) with just a few quick prompts<a href="#disclaimer" style="color: var(--pink); text-decoration: none; font-family: 'Bricolage Grotesque', sans-serif; font-size: 0.8rem; vertical-align: super; font-weight: 700;">*</a>. It feels very MySpace, where making a few small changes can create a page that lets the world know who you are!</p>
 
   </div>
 
@@ -485,6 +510,21 @@
       <li><span class="list-num">3</span>Check in on Cloudflare's analytics and decide if I want something more powerful</li>
       <li><span class="list-num">4</span>I have a sneaking suspicion everyone's Claude-built site looks the same, so I'll be watching to see if I need to freshen up the design</li>
     </ol>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div id="disclaimer" class="disclaimer-block">
+    <div class="disclaimer-heading"><span class="disclaimer-asterisk">*</span> "A few quick prompts" — what that actually means</div>
+    <div class="post-body">
+      <p>While it may only take a few quick prompts to build your own site using Claude, it can also feel really overwhelming. I want to acknowledge my background and how it made this feel quick for me:</p>
+      <ul style="padding-left: 1.4rem; margin-bottom: 1.6rem; display: flex; flex-direction: column; gap: 0.6rem;">
+        <li>I've used GitHub before and understand how file structure and workflows operate</li>
+        <li>I've built HTML sites, debugged head tag issues, and have a working knowledge of CSS</li>
+        <li>I've QA'd responsive websites and know what to look for across mobile and desktop</li>
+        <li>I know what a DNS record is and understand how domain routing works</li>
+      </ul>
+      <p>If any of those things feel unfamiliar, you may need some extra prompts. That's okay, you can ask Claude to help!</p>
+    </div>
   </div>
 
   <div class="post-footer-bar">
