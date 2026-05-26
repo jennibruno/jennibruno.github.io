@@ -847,7 +847,9 @@
     .posts-grid { grid-template-columns: 1fr; }
     .writing-section { padding: 4rem 2rem; }
     nav { padding: 1rem 1.5rem; }
-    .nav-links { display: none; }
+    .nav-links { display: flex; }
+    .nav-links li { display: none; }
+    .nav-links li:last-child { display: block; }
     footer { grid-template-columns: 1fr; text-align: center; }
     .footer-right { text-align: center; }
     .writing-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
@@ -1003,18 +1005,17 @@
       <div class="section-eyebrow">Recent Writing</div>
       <h2 class="section-title">What I'm thinking about lately <em>(in writing)</em></h2>
     </div>
-    <a href="#" class="pill-btn pill-outline" style="border: 2px solid rgba(26,16,37,0.2) !important;">All posts →</a>
   </div>
 
   <div class="posts-grid">
-    <a class="post-card" href="#">
+    <a class="post-card" href="/blog/building-my-personal-site-with-claude.html">
       <div class="post-color-bar bar-pink"></div>
       <div class="post-body">
-        <div class="post-category">Media Business</div>
-        <div class="post-title">Lorem ipsum dolor sit amet consectetur</div>
-        <div class="post-excerpt">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium totam rem aperiam eaque ipsa quae.</div>
+        <div class="post-category">Prompted</div>
+        <div class="post-title">Building my personal site using Claude</div>
+        <div class="post-excerpt">I've always wanted a website, but never had a reason to fully commit, especially if it meant a monthly subscription fee. Here's how I built mine for free.</div>
         <div class="post-footer">
-          <div class="post-date">Coming soon</div>
+          <div class="post-date">May 2026</div>
           <div class="read-btn">Read →</div>
         </div>
       </div>
@@ -1023,9 +1024,9 @@
     <a class="post-card" href="#">
       <div class="post-color-bar bar-blue"></div>
       <div class="post-body">
-        <div class="post-category">AI & Journalism</div>
-        <div class="post-title">Nemo enim ipsam voluptatem quia voluptas</div>
-        <div class="post-excerpt">Ut enim ad minima veniam quis nostrum exercitationem ullam corporis suscipit laboriosam nisi ut aliquid ex ea commodi consequatur.</div>
+        <div class="post-category">TKTK</div>
+        <div class="post-title">Coming Soon</div>
+        <div class="post-excerpt">I'll be sharing a few of my AI experiments in future blog posts!</div>
         <div class="post-footer">
           <div class="post-date">Coming soon</div>
           <div class="read-btn">Read →</div>
@@ -1036,15 +1037,19 @@
     <a class="post-card" href="#">
       <div class="post-color-bar bar-yellow"></div>
       <div class="post-body">
-        <div class="post-category">Data & Tools</div>
-        <div class="post-title">Quis autem vel eum iure reprehenderit</div>
-        <div class="post-excerpt">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores.</div>
+        <div class="post-category">TKTK</div>
+        <div class="post-title">Coming Soon</div>
+        <div class="post-excerpt">I'll be sharing a few of my AI experiments in future blog posts!</div>
         <div class="post-footer">
           <div class="post-date">Coming soon</div>
           <div class="read-btn">Read →</div>
         </div>
       </div>
     </a>
+  </div>
+
+  <div style="text-align: left; margin-top: 2.5rem;">
+    <a href="/blog/" class="pill-btn pill-outline" style="border: 2px solid rgba(26,16,37,0.2) !important;">All posts →</a>
   </div>
 </section>
 
